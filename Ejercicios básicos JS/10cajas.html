@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <style>
+      .cajas {
+        width: 25px;
+        height: 25px;
+        display: inline-block;
+        background-color: rgb(54, 221, 233);
+        padding: 10px;
+        text-align: center;
+        vertical-align: center;
+        margin: 10px;
+        border: 1px solid rgb(37, 37, 37);
+      }
+    </style>
+  </head>
+  <body>
+    <div id="container"></div>
+    <script>
+      var contenedor = document.getElementById("container");
+
+      for (var i = 0; i < 10; i++) {
+        var para = document.createElement("div");
+        para.className = "cajas";
+        para.innerText = i + 1;
+        contenedor.appendChild(para);
+      }
+      for (var d of document.getElementsByClassName("cajas")) {
+        d.addEventListener("click", function() {
+          mensaje(this.innerText);
+        });
+      }
+      function mensaje(texto) {
+        console.log(texto);
+      }
+    </script>
+  </body>
+</html>
