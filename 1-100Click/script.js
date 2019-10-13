@@ -49,7 +49,7 @@ function cargarNumeros() {
   for (let i = 0; i < numeroMax; i++) {
     var boton = document.createElement("button");
     const j = Math.floor(Math.random() * (i + 1));
-    boton.className = "botonNumero";
+    boton.className = "boton_numero";
     boton.innerHTML = numeros[i];
     boton.addEventListener("click", logicaJuego);
     contenedor.appendChild(boton);
@@ -127,7 +127,7 @@ botonCerrar1.addEventListener("click", function() {
 }
 
 function desactivarBotones() {
-  var botones = document.getElementsByClassName("botonNumero");
+  var botones = document.getElementsByClassName("boton_numero");
   for (let i = 0; i < botones.length; i++) {
     botones[i].disabled = true;
     botones[i].style.color = "grey";
