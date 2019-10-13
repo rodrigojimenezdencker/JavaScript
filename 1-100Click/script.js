@@ -64,7 +64,6 @@ function mezclarNumerosArray(a) {
   return a;
 }
 
-
 function logicaJuego() {
   this.disabled = true; // Desactivar botón pulsado
   if (this.innerText == numeroMax && comprobarNumeroClicado(this.innerText)) {

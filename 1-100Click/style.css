@@ -33,19 +33,7 @@ body {
     box-shadow: #90b454 0 1px 0 inset;
   }
 
-  .boton_numero, .acertado {
-    font-size: 20px;
-    width: 60px;
-    height: 60px;
-    margin: 6px;
-    border-radius: 3px;
-  }
-
   .fallado {
-    font-size: 1.3em;
-    width: 60px;
-    height: 60px;
-    margin: 6px;
     background: #cf5f5f;
     color: grey;
     text-shadow: 0 1px 0 #eeb2b2;
@@ -53,17 +41,24 @@ body {
     border-left: 1px solid #a84c4c;
     border-right: 1px solid #a65050;
     border-bottom: 1px solid #b65858;
-    border-radius: 3px;
     box-shadow: #b45454 0 1px 0 inset;
   }
 
+  .boton_numero, .acertado, .fallado {
+    font-size: 20px;
+    width: 60px;
+    height: 60px;
+    margin: 6px;
+    border-radius: 3px;
+  }
+  
   #tiempo,
   #restantes {
     font-size: 50px;
   }
 
   #contenedor-jugar {
-    height: 50%;
+    height: 100%;
     width: 100%;
     position: relative;
     background-color: white;
@@ -72,7 +67,7 @@ body {
 
   #jugar,
   #volver-jugar {
-    color: rgb(255, 255, 255);
+    color: white;
     box-shadow: inset 0px 1px 0px 0px #caefab;
     background: linear-gradient(to bottom, #77d42a 5%, #5cb811 100%);
     background-color: #77d42a;
@@ -86,7 +81,6 @@ body {
   }
 
   #jugar {
-    font-size: 50px;
     padding: 25px;
     margin: 50px;
     width: 80%;
@@ -100,7 +94,7 @@ body {
     user-select: none;
   }
 
-  #volver-jugar i {
+  #volver-jugar i, #jugar {
     font-size: 50px;
   }
 
@@ -114,11 +108,6 @@ body {
   #volver-jugar:active {
     position: relative;
     top: 1px;
-  }
-
-  h1 {
-    align-self: center;
-    display: inline-block;
   }
 
   #grid {
@@ -169,7 +158,6 @@ body {
     color: white;
     cursor: pointer;
     background-color: rgb(250, 60, 27);
-    /* z-index: 1; */
   }
 
   #boton_cerrar:hover {
