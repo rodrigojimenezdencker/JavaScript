@@ -1,39 +1,41 @@
 // Variables globales
-var numeroActual = 1;
-var numeroMax = 100;
+var numero_actual = 1;
+var numero_max = 100;
 var contenedor = document.getElementById("contenedor");
-var mensajeFinalGanado = document.createElement("div");
-var mensajeFinalPerdido = document.createElement("div");
-var intervaloContador;
-var volverJugarBoton = document.getElementById("volver-jugar");
-volverJugarBoton.addEventListener("click", volverJugar = () => location.reload(true));
+var cartel_ganado = document.createElement("div");
+var cartel_perdido = document.createElement("div");
+var intervalo_contador;
+var boton_reiniciar = document.getElementById("boton_reiniciar");
+boton_reiniciar.addEventListener(
+  "click",
+  (volverJugar = () => location.reload(true))
+);
 
 // Evento del botón "Jugar"
-var botonJugar = document.getElementById("jugar");
-botonJugar.addEventListener("click", jugar);
+var boton_jugar = document.getElementById("jugar");
+boton_jugar.addEventListener("click", jugar);
 
 function jugar() {
   encenderContador();
   cargarNumeros();
-  volverJugarBoton.style.visibility = "visible"; // Mostrar el botón de reiniciar
-  var contenedorJugar = document.getElementById("contenedor-jugar");
-  contenedorJugar.style.display = "none"; // Quitar botón de jugar de la pantalla
+  boton_reiniciar.style.visibility = "visible"; // Mostrar el botón de reiniciar
+  var contenedor_jugar = document.getElementById("contenedor-boton_jugar");
+  contenedor_jugar.style.display = "none"; // Quitar botón de jugar de la pantalla
 }
 
 // Contador
 function encenderContador() {
-  let minutos = ((4 * 60) - 1);
-  let contador = minutos,
-    segundos;
-  intervaloContador = setInterval(function() {
+  let minutos = 4 * 60 - 1;
+  let contador = minutos, segundos;
+  intervalo_contador = setInterval(function() {
+    var display = document.getElementById("tiempo");
     minutos = parseInt(contador / 60, 10);
     minutos = minutos < 10 ? "0" + minutos : minutos;
     segundos = parseInt(contador % 60, 10);
     segundos = segundos < 10 ? "0" + segundos : segundos;
-    var display = document.getElementById("tiempo");
     display.textContent = minutos + ":" + segundos;
     if (--contador < 0) {
-      finJuego(numeroActual);
+      finJuego(numero_actual);
     }
   }, 1000);
 }
@@ -41,12 +43,12 @@ function encenderContador() {
 // Creación de Array inicial
 function cargarNumeros() {
   var numeros = [];
-  for (var i = 1; i <= numeroMax; i++) {
+  for (var i = 1; i <= numero_max; i++) {
     numeros.push(i);
   }
   numeros = mezclarNumerosArray(numeros);
   //Crear los botones con números del array desordenado al "azar"
-  for (let i = 0; i < numeroMax; i++) {
+  for (let i = 0; i < numero_max; i++) {
     var boton = document.createElement("button");
     const j = Math.floor(Math.random() * (i + 1));
     boton.className = "boton_numero";
@@ -66,14 +68,14 @@ function mezclarNumerosArray(a) {
 
 function logicaJuego() {
   this.disabled = true; // Desactivar botón pulsado
-  if (this.innerText == numeroMax && comprobarNumeroClicado(this.innerText)) {
+  if (this.innerText == numero_max && comprobarNumeroClicado(this.innerText)) {
     mostrarRestantes(this.innerText);
     this.className = "acertado";
     finJuego(this.innerText);
   } else if (comprobarNumeroClicado(this.textContent)) {
     mostrarRestantes(this.innerText);
     this.className = "acertado";
-    numeroActual++;
+    numero_actual++;
   } else {
     this.className = "fallado";
     finJuego(this.innerText);
@@ -81,48 +83,48 @@ function logicaJuego() {
 }
 
 function mostrarRestantes() {
-  var mensajeRestantes = document.getElementById("restantes");
-  mensajeRestantes.textContent = numeroMax - numeroActual;
+  var texto_restantes = document.getElementById("texto_restantes");
+  texto_restantes.textContent = numero_max - numero_actual;
 }
 
 function comprobarNumeroClicado(valor) {
-  return valor == numeroActual;
+  return valor == numero_actual;
 }
 
 function finJuego(valor) {
-  clearInterval(intervaloContador);
+  clearInterval(intervalo_contador);
   desactivarBotones();
   cargarMensajesFinales();
-  if (valor == numeroMax && comprobarNumeroClicado(valor)) {
-    mensajeFinalGanado.style.visibility = "visible";
+  if (valor == numero_max && comprobarNumeroClicado(valor)) {
+    cartel_ganado.style.visibility = "visible";
   } else {
-    mensajeFinalPerdido.style.visibility = "visible";
+    cartel_perdido.style.visibility = "visible";
   }
 }
-  
+
 function cargarMensajesFinales() {
-  let stringGanado = "¡Enhorabuena, has ganado! Puntuación: " + numeroMax;
-  let stringPerdido = "¡Vaya, has perdido! Puntuación: " + (numeroActual - 1);
-  contenedor.appendChild(mensajeFinalGanado);
-  contenedor.appendChild(mensajeFinalPerdido);
-  mensajeFinalGanado.id = "mensaje-ganado";
-  mensajeFinalPerdido.id = "mensaje-perdido";
-  mensajeFinalGanado.innerText = stringGanado;
-  mensajeFinalPerdido.innerText = stringPerdido;  
-  var botonCerrar1 = document.createElement("div");  
-  botonCerrar1.id = "boton_cerrar";
-  botonCerrar1.innerText = "×";
-  var botonCerrar2 = document.createElement("div");  
-  botonCerrar2.id = "boton_cerrar";
-  botonCerrar2.innerText = "×";
-botonCerrar1.addEventListener("click", function() {
+  let mensaje_ganado = "¡Enhorabuena, has ganado! Puntuación: " + numero_max;
+  let mensaje_perdido = "¡Vaya, has perdido! Puntuación: " + (numero_actual - 1);
+  var boton_cerrar_1 = document.createElement("div");
+  var boton_cerrar_2 = document.createElement("div");
+  contenedor.appendChild(cartel_ganado);
+  contenedor.appendChild(cartel_perdido);
+  cartel_ganado.id = "mensaje_ganado";
+  cartel_perdido.id = "mensaje_perdido";
+  cartel_ganado.innerText = mensaje_ganado;
+  cartel_perdido.innerText = mensaje_perdido;
+  boton_cerrar_1.id = "boton_cerrar";
+  boton_cerrar_1.innerText = "×";
+  boton_cerrar_2.id = "boton_cerrar";
+  boton_cerrar_2.innerText = "×";
+  boton_cerrar_1.addEventListener("click", function() {
     this.parentNode.style.visibility = "hidden";
   });
-  botonCerrar2.addEventListener("click", function() {
+  boton_cerrar_2.addEventListener("click", function() {
     this.parentNode.style.visibility = "hidden";
   });
-  mensajeFinalGanado.appendChild(botonCerrar1);
-  mensajeFinalPerdido.appendChild(botonCerrar2);
+  cartel_ganado.appendChild(boton_cerrar_1);
+  cartel_perdido.appendChild(boton_cerrar_2);
 }
 
 function desactivarBotones() {

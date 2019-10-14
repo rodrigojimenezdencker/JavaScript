@@ -11,7 +11,7 @@ body {
     background: #fafafa;
     border: 1px solid #dddfde;
   }
-
+  
   .boton_numero {
     border: 1px solid #cfcfcf;
     color: #555;
@@ -32,7 +32,7 @@ body {
     border-bottom: 1px solid #97b658;
     box-shadow: #90b454 0 1px 0 inset;
   }
-
+  
   .fallado {
     background: #cf5f5f;
     color: grey;
@@ -43,7 +43,7 @@ body {
     border-bottom: 1px solid #b65858;
     box-shadow: #b45454 0 1px 0 inset;
   }
-
+  
   .boton_numero, .acertado, .fallado {
     font-size: 20px;
     width: 60px;
@@ -53,20 +53,27 @@ body {
   }
   
   #tiempo,
-  #restantes {
+  #texto_restantes {
     font-size: 50px;
   }
+  
 
-  #contenedor-jugar {
+  #contenedor-boton_jugar {
     height: 100%;
     width: 100%;
     position: relative;
     background-color: white;
     z-index: 1;
   }
+  
+
+  .mini_titulos {
+    color: rgb(126, 126, 126);
+    margin: 0;
+  }
 
   #jugar,
-  #volver-jugar {
+  #boton_reiniciar {
     color: white;
     box-shadow: inset 0px 1px 0px 0px #caefab;
     background: linear-gradient(to bottom, #77d42a 5%, #5cb811 100%);
@@ -86,7 +93,7 @@ body {
     width: 80%;
   }
 
-  #volver-jugar {
+  #boton_reiniciar {
     visibility: hidden;
     width: 50px;
     height: 50px;
@@ -94,18 +101,18 @@ body {
     user-select: none;
   }
 
-  #volver-jugar i, #jugar {
+  #boton_reiniciar i, #jugar {
     font-size: 50px;
   }
 
   #jugar:hover,
-  #volver-jugar:hover {
+  #boton_reiniciar:hover {
     background: linear-gradient(to bottom, #5cb811 5%, #77d42a 100%);
     background-color: #5cb811;
   }
 
   #jugar:active,
-  #volver-jugar:active {
+  #boton_reiniciar:active {
     position: relative;
     top: 1px;
   }
@@ -120,16 +127,8 @@ body {
     padding: 10px;
   }
 
-  #mensaje-perdido {
-    background-color: tomato;
-  }
-
-  #mensaje-ganado {
-    background-color: #2ddf37;
-  }
-
-  #mensaje-ganado,
-  #mensaje-perdido {
+  #mensaje_ganado,
+  #mensaje_perdido {
     position: absolute;
     top: 0;
     bottom: 0;
@@ -148,6 +147,14 @@ body {
     z-index: 2;
   }
 
+  #mensaje_perdido {
+    background-color: tomato;
+  }
+
+  #mensaje_ganado {
+    background-color: #2ddf37;
+  }
+
   #boton_cerrar {
     position: absolute;
     top: 0;
@@ -163,9 +170,4 @@ body {
   #boton_cerrar:hover {
     background-color: rgb(255, 38, 0);
     color: rgb(219, 219, 219);
-  }
-
-  .mini-titulos {
-    color: rgb(126, 126, 126);
-    margin: 0;
   }
