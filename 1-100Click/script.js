@@ -24,11 +24,13 @@ function jugar() {
 }
 
 // Contador
+var display = document.getElementById("tiempo");
+display.innerText = "04:00";
 function encenderContador() {
-  let minutos = (4 * 60 - 1);
-  let contador = minutos, segundos;
+  let minutos = 4 * 60 - 1;
+  let contador = minutos,
+    segundos;
   intervalo_contador = setInterval(function() {
-    var display = document.getElementById("tiempo");
     minutos = parseInt(contador / 60, 10);
     minutos = minutos < 10 ? "0" + minutos : minutos;
     segundos = parseInt(contador % 60, 10);
@@ -50,7 +52,6 @@ function cargarNumeros() {
   //Crear los botones con números del array desordenado al "azar"
   for (let i = 0; i < numero_max; i++) {
     var boton = document.createElement("button");
-    const j = Math.floor(Math.random() * (i + 1));
     boton.className = "boton_numero";
     boton.innerHTML = numeros[i];
     boton.addEventListener("click", logicaJuego);
@@ -68,14 +69,14 @@ function mezclarNumerosArray(a) {
 
 function logicaJuego() {
   this.disabled = true; // Desactivar botón pulsado
-  if (this.innerText == numero_max && comprobarNumeroClicado(this.innerText)) {
+  if (comprobarNumeroClicado(this.innerText)) {
     mostrarRestantes(this.innerText);
     this.className = "acertado";
-    finJuego(this.innerText);
-  } else if (comprobarNumeroClicado(this.textContent)) {
-    mostrarRestantes(this.innerText);
-    this.className = "acertado";
-    numero_actual++;
+    if (this.innerText == numero_max) {
+      finJuego(this.innerText);
+    } else {
+      numero_actual++;
+    }
   } else {
     this.className = "fallado";
     finJuego(this.innerText);
@@ -104,7 +105,8 @@ function finJuego(valor) {
 
 function cargarMensajesFinales() {
   let mensaje_ganado = "¡Enhorabuena, has ganado! Puntuación: " + numero_max;
-  let mensaje_perdido = "¡Vaya, has perdido! Puntuación: " + (numero_actual - 1);
+  let mensaje_perdido =
+    "¡Vaya, has perdido! Puntuación: " + (numero_actual - 1);
   var boton_cerrar_1 = document.createElement("div");
   var boton_cerrar_2 = document.createElement("div");
   contenedor.appendChild(cartel_ganado);
