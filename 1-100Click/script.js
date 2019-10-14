@@ -25,7 +25,7 @@ function jugar() {
 
 // Contador
 function encenderContador() {
-  let minutos = 4 * 60 - 1;
+  let minutos = (4 * 60 - 1);
   let contador = minutos, segundos;
   intervalo_contador = setInterval(function() {
     var display = document.getElementById("tiempo");

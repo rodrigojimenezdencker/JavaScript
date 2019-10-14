@@ -1,173 +1,218 @@
 body {
-    font-family: "Courier New", Courier, monospace;
-  }
+  margin: 0;
+  font-family: "Courier New", Courier, monospace;
+}
 
+#contenedor {
+  text-align: center;
+  vertical-align: center;
+  width: 80%;
+  padding: 20px;
+  margin: auto;
+  margin-top: 10px;
+  background: #fafafa;
+  border: 1px solid #dddfde;
+}
+
+.boton_numero {
+  border: 1px solid #cfcfcf;
+  color: #555;
+  background: #e9e9e9;
+  cursor: pointer;
+  box-shadow: 0 3px 1px #b1b1b1, #fafafa 0 -1px 0;
+}
+
+.acertado {
+  background: #a7cf5f;
+  color: #495e2d;
+  text-shadow: 0 1px 0 #d8eeb2;
+  border-top: 1px solid #708743;
+  border-left: 1px solid #8ba84c;
+  border-right: 1px solid #88a650;
+  border-bottom: 1px solid #97b658;
+  box-shadow: #90b454 0 1px 0 inset;
+}
+
+.fallado {
+  background: #cf5f5f;
+  color: grey;
+  text-shadow: 0 1px 0 #eeb2b2;
+  border-top: 1px solid #874343;
+  border-left: 1px solid #a84c4c;
+  border-right: 1px solid #a65050;
+  border-bottom: 1px solid #b65858;
+  box-shadow: #b45454 0 1px 0 inset;
+}
+
+.boton_numero,
+.acertado,
+.fallado {
+  font-size: 20px;
+  width: 60px;
+  height: 60px;
+  margin: 6px;
+  border-radius: 3px;
+}
+
+#tiempo,
+#texto_restantes {
+  font-size: 50px;
+}
+
+#contenedor-boton_jugar {
+  height: 100%;
+  width: 100%;
+  position: relative;
+  background-color: transparent;
+  z-index: 1;
+}
+
+.mini_titulos {
+  display: block;
+  color: rgb(126, 126, 126);
+  margin: 0;
+}
+
+#jugar,
+#boton_reiniciar {
+  color: white;
+  box-shadow: inset 0px 1px 0px 0px #caefab;
+  background: linear-gradient(to bottom, #77d42a 5%, #5cb811 100%);
+  background-color: #77d42a;
+  border-radius: 6px;
+  border: 1px solid #268a16;
+  display: inline-block;
+  cursor: pointer;
+  font-weight: bold;
+  text-decoration: none;
+  text-shadow: 0px 1px 0px #aade7c;
+}
+
+#jugar {
+  padding: 25px;
+  margin: auto;
+  width: 60vw;
+}
+
+#boton_reiniciar {
+  visibility: hidden;
+  width: 50px;
+  height: 50px;
+  padding: 10px;
+  user-select: none;
+}
+
+#boton_reiniciar i,
+#jugar {
+  font-size: 50px;
+}
+
+#jugar:hover,
+#boton_reiniciar:hover {
+  background: linear-gradient(to bottom, #5cb811 5%, #77d42a 100%);
+  background-color: #5cb811;
+}
+
+#jugar:active,
+#boton_reiniciar:active {
+  position: relative;
+  top: 1px;
+}
+
+#grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: 1fr;
+  padding: 15px;
+  border-bottom: 1px solid #dddfde;
+  margin-bottom: 30px;
+}
+
+#mensaje_ganado,
+#mensaje_perdido {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  width: 500px;
+  height: 200px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  border-radius: 5px;
+  font-size: 30px;
+  box-shadow: 0px 0px 21px 0px #959595;
+  visibility: hidden;
+  z-index: 2;
+}
+
+#mensaje_perdido {
+  background-color: tomato;
+}
+
+#mensaje_ganado {
+  background-color: #2ddf37;
+}
+
+#boton_cerrar {
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-size: 45px;
+  height: 45px;
+  width: 45px;
+  color: white;
+  cursor: pointer;
+  background-color: rgb(250, 60, 27);
+}
+
+#boton_cerrar:hover {
+  background-color: rgb(255, 38, 0);
+  color: rgb(219, 219, 219);
+}
+
+@media (max-width: 940px) {
   #contenedor {
-    text-align: center;
-    vertical-align: center;
-    width: 80%;
-    margin: auto;
-    margin-top: 10px;
-    background: #fafafa;
-    border: 1px solid #dddfde;
-  }
-  
-  .boton_numero {
-    border: 1px solid #cfcfcf;
-    color: #555;
-    background: #e9e9e9;
-    text-decoration: none;
-    cursor: pointer;
-    position: relative;
-    box-shadow: 0 3px 1px #b1b1b1, #fafafa 0 -1px 0;
-  }
-
-  .acertado {
-    background: #a7cf5f;
-    color: #495e2d;
-    text-shadow: 0 1px 0 #d8eeb2;
-    border-top: 1px solid #708743;
-    border-left: 1px solid #8ba84c;
-    border-right: 1px solid #88a650;
-    border-bottom: 1px solid #97b658;
-    box-shadow: #90b454 0 1px 0 inset;
-  }
-  
-  .fallado {
-    background: #cf5f5f;
-    color: grey;
-    text-shadow: 0 1px 0 #eeb2b2;
-    border-top: 1px solid #874343;
-    border-left: 1px solid #a84c4c;
-    border-right: 1px solid #a65050;
-    border-bottom: 1px solid #b65858;
-    box-shadow: #b45454 0 1px 0 inset;
-  }
-  
-  .boton_numero, .acertado, .fallado {
-    font-size: 20px;
-    width: 60px;
-    height: 60px;
-    margin: 6px;
-    border-radius: 3px;
-  }
-  
-  #tiempo,
-  #texto_restantes {
-    font-size: 50px;
-  }
-  
-
-  #contenedor-boton_jugar {
-    height: 100%;
-    width: 100%;
-    position: relative;
-    background-color: white;
-    z-index: 1;
-  }
-  
-
-  .mini_titulos {
-    color: rgb(126, 126, 126);
+    width: 100vw;
+    padding: 5px;
+    box-sizing: border-box;
     margin: 0;
   }
 
-  #jugar,
-  #boton_reiniciar {
-    color: white;
-    box-shadow: inset 0px 1px 0px 0px #caefab;
-    background: linear-gradient(to bottom, #77d42a 5%, #5cb811 100%);
-    background-color: #77d42a;
-    border-radius: 6px;
-    border: 1px solid #268a16;
-    display: inline-block;
-    cursor: pointer;
-    font-weight: bold;
-    text-decoration: none;
-    text-shadow: 0px 1px 0px #aade7c;
-  }
-
-  #jugar {
-    padding: 25px;
-    margin: 50px;
+  #contenedor-boton_jugar {
+    height: 50%;
     width: 80%;
+    margin: auto;
+    position: relative;
+    z-index: 1;
+  }
+
+  .boton_numero,
+  .acertado,
+  .fallado {
+    font-size: 1em;
+    max-height: 35px;
+    max-width: 35px;
+    margin: 6px;
+    border-radius: 3px;
   }
 
   #boton_reiniciar {
-    visibility: hidden;
-    width: 50px;
-    height: 50px;
-    padding: 10px;
-    user-select: none;
+    width: 30px;
+    height: 30px;
+  }
+  #boton_reiniciar i {
+    font-size: 30px;
   }
 
-  #boton_reiniciar i, #jugar {
-    font-size: 50px;
+  #tiempo,
+  #texto_restantes {
+    font-size: 30px;
   }
-
-  #jugar:hover,
-  #boton_reiniciar:hover {
-    background: linear-gradient(to bottom, #5cb811 5%, #77d42a 100%);
-    background-color: #5cb811;
-  }
-
-  #jugar:active,
-  #boton_reiniciar:active {
-    position: relative;
-    top: 1px;
-  }
-
-  #grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: 1fr;
-    align-items: center;
-    border-bottom: 1px solid #dddfde;
-    margin-bottom: 30px;
-    padding: 10px;
-  }
-
   #mensaje_ganado,
   #mensaje_perdido {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    margin: auto;
-    width: 500px;
-    height: 200px;
-    display: flex;
-    align-items: center;
-    text-align: center;
-    border-radius: 5px;
-    font-size: 30px;
-    box-shadow: 0px 0px 21px 0px #959595;
-    visibility: hidden;
-    z-index: 2;
+    width: 80vw;
   }
-
-  #mensaje_perdido {
-    background-color: tomato;
-  }
-
-  #mensaje_ganado {
-    background-color: #2ddf37;
-  }
-
-  #boton_cerrar {
-    position: absolute;
-    top: 0;
-    right: 0;
-    font-size: 45px;
-    height: 45px;
-    width: 45px;
-    color: white;
-    cursor: pointer;
-    background-color: rgb(250, 60, 27);
-  }
-
-  #boton_cerrar:hover {
-    background-color: rgb(255, 38, 0);
-    color: rgb(219, 219, 219);
-  }
+}
