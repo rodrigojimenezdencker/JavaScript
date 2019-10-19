@@ -5,11 +5,12 @@ displacement.addEventListener("keyup", function (e) {
         Encode(text.value, parseInt(displacement.value));
     }
 });
-document.getElementById("encodeButton").addEventListener("click", () => Encode(text.value, parseInt(displacement.value)));
+text.addEventListener("keyup", () => UpdateValues(EncodeCesar(text.value, parseInt(displacement.value == "" ? 0 : displacement.value)), "encodedText"));
+displacement.addEventListener("keyup", () => UpdateValues(EncodeCesar(text.value, parseInt(displacement.value == "" ? 0 : displacement.value)), "encodedText"));
 let resetButton = document.getElementById("resetButton").addEventListener("click", ResetValues);
 let copyButton = document.getElementById("copyButton").addEventListener("click", CopyText);
 
-function Encode(text, displacement) {
+function EncodeCesar(text, displacement) {
     let letters = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
     text = text.toUpperCase();
     let encodedText = '';
@@ -18,14 +19,17 @@ function Encode(text, displacement) {
         let position = letters.indexOf(text[i]);
         encodedText += letters[(position + displacement) % letters.length];
     }
-    document.getElementById("encodedText").value = encodedText;
-    document.getElementById("copiedMessage").style.visibility = "hidden";
+    return encodedText;
+}
+
+function UpdateValues(text, id) {
+    document.getElementById(id).value = text;
 }
 
 function ResetValues() {
     text.value = "";
     displacement.value = "";
-    document.getElementById("copiedMessage").style.visibility = "hidden";    
+    document.getElementById("copiedMessage").style.visibility = "hidden";
 }
 
 function CopyText() {
