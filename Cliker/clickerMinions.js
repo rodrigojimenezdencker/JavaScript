@@ -31,9 +31,14 @@ document.getElementById("comprar_minion").addEventListener("click", comprarMinio
 document.getElementById("comprar_minion").addEventListener("click", comenzarAutoclicker);
 document.getElementById("ampliar_oficinas").addEventListener("click", ampliarOficinas);
 document.getElementById("comprar_disco_duro").addEventListener("click", comprarDiscoDuro);
-document.getElementById("contratar_formador").addEventListener("click", contratarFormador);
-document.getElementById("comprar_maquina_cafe").addEventListener("click", comprarMaquinaCafe);
+document.getElementById("contratar_formador").addEventListener("click", () => comprarPowerUp(powerups_costs.formador, 10));
+document.getElementById("comprar_maquina_cafe").addEventListener("click", () => comprarPowerUp(powerups_costs.maquina_cafe, 2));
 let info = document.getElementById("mensajes_info");
+
+function actualizarDinero(dinero) {
+    company.dinero += dinero;
+    document.getElementById("dinero").innerText = company.dinero.toFixed(2);
+}
 
 let timer;
 function comenzarAutoclicker() {
@@ -68,8 +73,7 @@ function venderLineas() {
     if (company.lineas < 1) {
         info.innerText = "No hay líneas para vender";
     } else {
-        company.dinero += company.lineas * company.precio_linea;
-        document.getElementById("dinero").innerText = company.dinero.toFixed(2);
+        actualizarDinero(company.lineas * company.precio_linea);
         company.lineas = 0;
         document.getElementById("lineas_escritas").innerText = company.lineas;
     }
@@ -82,8 +86,7 @@ function comprarMinion() {
         if (company.minions + 1 > company.capacidad_oficinas * company.oficinas) {
             info.innerText = "Límite de minions alcanzado. Compra más oficinas";
         } else {
-            company.dinero -= company.coste_minion;
-            document.getElementById("dinero").innerText = company.dinero.toFixed(2);
+            actualizarDinero(-company.coste_minion);
             company.minions++;
             document.getElementById("minions").innerText = company.minions;
         }
@@ -94,8 +97,7 @@ function ampliarOficinas() {
     if (company.dinero < company.coste_oficina) {
         info.innerText = "No tienes suficiente dinero para ampliar oficinas";
     } else {
-        company.dinero -= company.coste_oficina;
-        document.getElementById("dinero").innerText = company.dinero.toFixed(2);
+        actualizarDinero(-company.coste_oficina);
         company.oficinas++;
         document.getElementById("oficinas").innerText = company.oficinas;
     }
@@ -103,10 +105,9 @@ function ampliarOficinas() {
 
 function comprarDiscoDuro() {
     if (company.dinero < company.coste_discos_duros) {
-        info.innerText = "No hay suficiente dinero (100EUR)";
+        info.innerText = "No hay suficiente dinero (100 EUR)";
     } else {
-        company.dinero -= company.coste_discos_duros;
-        document.getElementById("dinero").innerText = company.dinero.toFixed(2);
+        actualizarDinero(-company.coste_discos_duros);
         company.discos_duros++;
     }
 }
@@ -117,22 +118,11 @@ function cambiarProductividad(valor) {
     comenzarAutoclicker();
 }
 
-function contratarFormador() {
-    if (company.dinero < powerups_costs.formador) {
-        info.innerText = "Necesitas más dinero (1000eur)";
+function comprarPowerUp(powerup, aumentoProductividad){
+    if (company.dinero < powerup) {
+        info.innerText = "Necesitas más dinero: " + powerup;
     } else {
-        company.dinero -= powerups_costs.formador;
-        document.getElementById("dinero").innerText = company.dinero.toFixed(2);        
-        cambiarProductividad(10);
-    }
-}
-
-function comprarMaquinaCafe() {
-    if (company.dinero < powerups_costs.maquina_cafe) {
-        info.innerText = "Necesitas más dinero (1000eur)";
-    } else {
-        company.dinero -= powerups_costs.maquina_cafe;
-        document.getElementById("dinero").innerText = company.dinero.toFixed(2);        
-        cambiarProductividad(2);
+        actualizarDinero(-powerup);
+        cambiarProductividad(aumentoProductividad);
     }
 }
