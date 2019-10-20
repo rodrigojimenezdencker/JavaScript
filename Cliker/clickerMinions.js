@@ -31,9 +31,9 @@ document.getElementById("comprar_minion").addEventListener("click", comprarMinio
 document.getElementById("comprar_minion").addEventListener("click", comenzarAutoclicker);
 document.getElementById("ampliar_oficinas").addEventListener("click", ampliarOficinas);
 document.getElementById("comprar_disco_duro").addEventListener("click", comprarDiscoDuro);
-document.getElementById("contratar_formador").addEventListener("click", () => comprarPowerUp(powerups_costs.formador, 10, "contratar_formador"));
-document.getElementById("comprar_maquina_cafe").addEventListener("click", () => comprarPowerUp(powerups_costs.maquina_cafe, 2, "comprar_maquina_cafe"));
-document.getElementById("comprar_incentivos").addEventListener("click", () => comprarPowerUp(powerups_costs.incentivos, 10));
+document.getElementById("contratar_formador").addEventListener("click", () => comprarPowerUpProductividad(powerups_costs.formador, 10, "contratar_formador"));
+document.getElementById("comprar_maquina_cafe").addEventListener("click", () => comprarPowerUpProductividad(powerups_costs.maquina_cafe, 2, "comprar_maquina_cafe"));
+document.getElementById("comprar_incentivos").addEventListener("click", () => comprarPowerUpProductividad(powerups_costs.incentivos, 10));
 
 let info = document.getElementById("mensajes_info");
 
@@ -91,25 +91,28 @@ function comprarMinion() {
             document.getElementById("minions").innerText = company.minions;
             if (company.minions > 500 && powerUpEspecialesActivados == false) {
                 activarPowerUpEspeciales();
-                powerUpEspecialesActivados = true;  
+                powerUpEspecialesActivados = true;
             }
         }
     }
 }
 
 function activarPowerUpEspeciales() {
-    document.getElementById("asesoria_SCRUM").addEventListener("click", () => comprarPowerUp(powerups_costs.asesoria_SCRUM, 4, "asesoria_SCRUM"));
     document.getElementById("asesoria_SCRUM").disabled = false;
-    document.getElementById("contratar_CTO_amazon").addEventListener("click", () => comprarPowerUp(powerups_costs.CTO_Amazon, 50, "contratar_CTO_amazon"));
+    document.getElementById("asesoria_SCRUM").addEventListener("click", () => comprarPowerUpProductividad(powerups_costs.asesoria_SCRUM, 4, "asesoria_SCRUM"));
     document.getElementById("contratar_CTO_amazon").disabled = false;
-    document.getElementById("contratar_comercial").addEventListener("click", () => comprarPowerUp(powerups_costs.comercial, 2, "contratar_comercial")); 
-    document.getElementById("contratar_comercial").disabled = false;  
-    document.getElementById("contratar_campanya_medios").addEventListener("click", () => comprarPowerUp(powerups_costs.campanya_medios, 2, "contratar_campanya_medios"));
-    document.getElementById("contratar_campanya_medios").disabled = false;   
-    document.getElementById("contratar_agencia").addEventListener("click", () => comprarPowerUp(powerups_costs.agencia, 2, "contratar_agencia"));
+    document.getElementById("contratar_CTO_amazon").addEventListener("click", () => comprarPowerUpProductividad(powerups_costs.CTO_Amazon, 50, "contratar_CTO_amazon"));
+    document.getElementById("contratar_comercial").disabled = false;
+    document.getElementById("contratar_comercial").addEventListener("click", () => comprarPowerUpPrecioCodigo(powerups_costs.comercial, 2, "contratar_comercial"));
+    document.getElementById("contratar_campanya_medios").disabled = false;
+    document.getElementById("contratar_campanya_medios").addEventListener("click", () => comprarPowerUpPrecioCodigo(powerups_costs.campanya_medios, 2, "contratar_campanya_medios"));
     document.getElementById("contratar_agencia").disabled = false;
-    document.getElementById("comprar_sistema_compresion").addEventListener("click", () => comprarPowerUp(powerups_costs.sistema_compresion, 2, "comprar_sistema_compresion"));  
+    document.getElementById("contratar_agencia").addEventListener("click", () => comprarPowerUpPrecioCodigo(powerups_costs.agencia, 2, "contratar_agencia"));
     document.getElementById("comprar_sistema_compresion").disabled = false;
+    document.getElementById("comprar_sistema_compresion").addEventListener("click", function() {
+        company.capacidad_discos_duros *= 2;
+        this.disabled = true;
+    });
 }
 
 function ampliarOficinas() {
@@ -131,7 +134,7 @@ function comprarDiscoDuro() {
     }
 }
 
-function comprarPowerUp(powerup, aumentoProductividad, id) {
+function comprarPowerUpProductividad(powerup, aumentoProductividad, id) {
     if (company.dinero < powerup) {
         info.innerText = "Necesitas más dinero: " + powerup;
     } else {
@@ -143,6 +146,16 @@ function comprarPowerUp(powerup, aumentoProductividad, id) {
         if (id !== undefined) {
             document.getElementById(id).disabled = true;
         }
+    }
+}
+
+function comprarPowerUpPrecioCodigo(powerup, aumento_precio_codigo, id) {
+    if (company.dinero < powerup) {
+        info.innerText = "Necesitas más dinero: " + powerup;
+    } else {
+        actualizarDinero(-powerup);
+        company.precio_linea *= aumento_precio_codigo;
+        document.getElementById(id).disabled = true;
     }
 }
 
