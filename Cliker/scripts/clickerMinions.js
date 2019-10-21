@@ -25,6 +25,10 @@ let powerups_costs = {
     "sistema_compresion": 1000
 }
 
+setTimeout(function() {
+    document.getElementById("ayuda_inicial").style.visibility = "hidden";
+}, 5000);
+
 document.getElementById("generar_linea").addEventListener("click", escribirLinea);
 document.getElementById("vender_lineas").addEventListener("click", venderLineas);
 document.getElementById("comprar_minion").addEventListener("click", comprarMinion);
@@ -35,7 +39,15 @@ document.getElementById("contratar_formador").addEventListener("click", () => co
 document.getElementById("comprar_maquina_cafe").addEventListener("click", () => comprarPowerUpProductividad(powerups_costs.maquina_cafe, 2, "comprar_maquina_cafe"));
 document.getElementById("comprar_incentivos").addEventListener("click", () => comprarPowerUpProductividad(powerups_costs.incentivos, 10));
 
-let info = document.getElementById("mensajes_info");
+
+function mensajeInfo(texto){
+    let caja_info = document.getElementById("mensajes_info");
+    caja_info.style.display = "block";
+    caja_info.innerText = "🚨 " + texto + " 🚨";
+    setTimeout(function() {
+        caja_info.style.display = "none";
+    }, 3000);
+}
 
 function actualizarDinero(dinero) {
     company.dinero += dinero;
@@ -52,7 +64,7 @@ function comenzarAutoclicker() {
 
 function escribirLinea() {
     if (company.lineas + 1 > company.discos_duros * company.capacidad_discos_duros) {
-        info.innerText = "Necesitas más discos duros";
+        mensajeInfo("Los discos duros están llenos. Compra más.");
     } else {
         company.lineas++;
         document.getElementById("lineas_escritas").innerText = company.lineas;
@@ -61,7 +73,7 @@ function escribirLinea() {
 
 function escribirLineaAutomatico() {
     if (company.lineas + company.minions > company.discos_duros * company.capacidad_discos_duros) {
-        info.innerText = "Necesitas más discos duros";
+        mensajeInfo("Los discos duros están llenos. Compra más.");
     } else {
         company.lineas += company.minions;
         document.getElementById("lineas_escritas").innerText = company.lineas;
@@ -70,7 +82,7 @@ function escribirLineaAutomatico() {
 
 function venderLineas() {
     if (company.lineas < 1) {
-        info.innerText = "No hay líneas para vender";
+        mensajeInfo("No hay líneas para vender.");
     } else {
         actualizarDinero(company.lineas * company.precio_linea);
         company.lineas = 0;
@@ -81,7 +93,7 @@ function venderLineas() {
 let powerUpEspecialesActivados = false;
 function comprarMinion() {
     if (company.dinero < 10) {
-        info.innerText = "No tienes suficiente dinero para comprar un Minion.";
+        mensajeInfo("No tienes suficiente dinero para comprar un Minion.");
     } else {
         if (company.minions + 1 > company.capacidad_oficinas * company.oficinas) {
             info.innerText = "Límite de minions alcanzado. Compra más oficinas";
@@ -117,7 +129,7 @@ function activarPowerUpEspeciales() {
 
 function ampliarOficinas() {
     if (company.dinero < company.coste_oficina) {
-        info.innerText = "No tienes suficiente dinero para ampliar oficinas";
+        mensajeInfo("No tienes suficiente dinero para ampliar oficinas");
     } else {
         actualizarDinero(-company.coste_oficina);
         company.oficinas++;
@@ -127,19 +139,21 @@ function ampliarOficinas() {
 
 function comprarDiscoDuro() {
     if (company.dinero < company.coste_discos_duros) {
-        info.innerText = "No hay suficiente dinero (100 EUR)";
+        mensajeInfo("No hay suficiente dinero para comprar un disco duro");
     } else {
         actualizarDinero(-company.coste_discos_duros);
         company.discos_duros++;
+        document.getElementById("discos_duros").innerText = company.discos_duros;
     }
 }
 
 function comprarPowerUpProductividad(powerup, aumentoProductividad, id) {
     if (company.dinero < powerup) {
-        info.innerText = "Necesitas más dinero: " + powerup;
+        mensajeInfo("Necesitas más dinero: " + powerup + " €");
     } else {
         if (powerup == powerups_costs.incentivos) {
             powerups_costs.incentivos *= 2;
+            document.getElementById("precio_incentivos").innerText = powerups_costs.incentivos;
         }
         actualizarDinero(-powerup);
         cambiarProductividad(aumentoProductividad);
@@ -151,7 +165,7 @@ function comprarPowerUpProductividad(powerup, aumentoProductividad, id) {
 
 function comprarPowerUpPrecioCodigo(powerup, aumento_precio_codigo, id) {
     if (company.dinero < powerup) {
-        info.innerText = "Necesitas más dinero: " + powerup;
+        mensajeInfo("Necesitas más dinero: " + powerup + " €");
     } else {
         actualizarDinero(-powerup);
         company.precio_linea *= aumento_precio_codigo;
