@@ -1,42 +1,94 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Clicker</title>
+    <link rel="stylesheet" href="button_animation.css">
     <style>
-        button#generar_linea {
-            width: 200px;
-            height: 200px;
+        div#container {
+            display: flex;
         }
+
+        #generar_linea {
+            width: 100%;
+            height: 500px;
+        }
+
+        #generar_linea:active {
+            transform: scale(0.97);
+        }
+
+        div#info_principal,
+        div#botones_principales {
+            display: flex;
+            justify-content: space-around;
+            padding: 10px;
+        }
+
+        div#seccion_principal,
+        div#powerups {
+            width: 50%;
+            border: 1px solid red;
+        }
+
+        div#contenedor_generar_linea {
+            display: flex;
+            justify-content: center;
+        }
+
+        #powerups h1 {
+            text-align: center;
+        }
+
+        #powerups button {
+            display: block;
+            width: 60%;
+            margin: 10px auto;
+        }
+
     </style>
 </head>
+
 <body>
-    <p>Líneas escritas: <span id="lineas_escritas">0</span></p>
-    <p>Dinero: <span id="dinero">0</span> €</p>
-    <p>Minions: <span id="minions">0</span></p>
-    <p>Oficinas: <span id="oficinas">1</span></p>
-    <p id="mensajes_info"></p>
-    <button id="generar_linea">Generar Línea</button>
-    <button id="vender_lineas">Vender líneas</button>
-    <button id="comprar_minion">Comprar Minion</button>
-    <button id="ampliar_oficinas">Ampliar oficinas</button>
-    <button id="comprar_disco_duro">Comprar disco duro</button>
-    <p>Powerups</p>
-    <button id="contratar_formador">Contratar formador</button>
-    <button id="comprar_maquina_cafe">Comprar máquina café</button>
-    <button id="comprar_incentivos">Comprar incentivos</button>
-    <button id="asesoria_SCRUM" disabled>Asesoría SCRUM</button>
-    <button id="contratar_CTO_amazon" disabled>Contratar CTO_amazon</button>
-    <button id="contratar_comercial" disabled>Contratar comercial</button>
-    <button id="contratar_campanya_medios" disabled>Contratar campaña medios</button>
-    <button id="contratar_agencia" disabled>Contratar agencia</button>
-    <button id="comprar_sistema_compresion" disabled>Comprar sistema compresión</button>
-
-
-    
+    <div id="info_principal">
+        <p>Líneas escritas: <span id="lineas_escritas">0</span></p>
+        <p>Dinero: <span id="dinero">0</span> €</p>
+        <p>Minions: <span id="minions">0</span></p>
+        <p>Oficinas: <span id="oficinas">1</span></p>
+        <p id="mensajes_info"></p>
+    </div>
+    <div id="container">
+        <div id="seccion_principal">
+            <div id="botones_principales">
+                <button class="bubbly-button" id="vender_lineas">Vender líneas</button>
+                <button class="bubbly-button" id="comprar_minion">Comprar Minion</button>
+                <button class="bubbly-button" id="ampliar_oficinas">Ampliar oficinas</button>
+                <button class="bubbly-button" id="comprar_disco_duro">Comprar disco duro</button>
+            </div>
+            <div id="contenedor_generar_linea">
+                <input id="generar_linea" type="image" src="./minion.gif">
+                </input>
+            </div>
+        </div>
+        <div id="powerups">
+            <h1>Powerups</h1>
+            <button class="bubbly-button" id="contratar_formador">Contratar formador</button>
+            <button class="bubbly-button" id="comprar_maquina_cafe">Comprar máquina café</button>
+            <button class="bubbly-button" id="comprar_incentivos">Comprar incentivos</button>
+            <button class="bubbly-button" id="asesoria_SCRUM" disabled>Asesoría SCRUM</button>
+            <button class="bubbly-button" id="contratar_CTO_amazon" disabled>Contratar CTO_amazon</button>
+            <button class="bubbly-button" id="contratar_comercial" disabled>Contratar comercial</button>
+            <button class="bubbly-button" id="contratar_campanya_medios" disabled>Contratar campaña medios</button>
+            <button class="bubbly-button" id="contratar_agencia" disabled>Contratar agencia</button>
+            <button class="bubbly-button" id="comprar_sistema_compresion" disabled>Comprar sistema compresión</button>
+        </div>
+    </div>
 
     <script src="clickerMinions.js"></script>
+    <script src="button_animation.js"></script>
 </body>
+
 </html>
