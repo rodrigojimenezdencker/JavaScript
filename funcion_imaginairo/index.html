@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function Imaginario(real, imaginario) {
+            this.real = real;
+            this.imaginario = imaginario;
+            this.modulo = function() {
+                Math.sqrt(Math.pow(this.real, 2) + Math.pow(this.imaginario, 2));
+            }
+        }
+    </script>
+</body>
+</html>
