@@ -1,8 +1,8 @@
 @font-face {
     font-family: 'nova_roundbook';
-    src: url('./fonts/novaround-webfont.woff2') format('woff2'),
-        url('./fonts/novaround-webfont.woff') format('woff'),
-        url('./fonts/NovaRound') format('truetype');
+    src: url('../fonts/novaround-webfont.woff2') format('woff2'),
+        url('../fonts/novaround-webfont.woff') format('woff'),
+        url('../fonts/NovaRound') format('truetype');
     font-weight: normal;
     font-style: normal;
 }

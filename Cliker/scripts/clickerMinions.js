@@ -96,7 +96,7 @@ function comprarMinion() {
         mensajeInfo("No tienes suficiente dinero para comprar un Minion.");
     } else {
         if (company.minions + 1 > company.capacidad_oficinas * company.oficinas) {
-            info.innerText = "Límite de minions alcanzado. Compra más oficinas";
+            mensajeInfo("Límite de minions alcanzado. Compra más oficinas");
         } else {
             actualizarDinero(-company.coste_minion);
             company.minions++;
