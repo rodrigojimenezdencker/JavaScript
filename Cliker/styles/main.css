@@ -105,6 +105,7 @@ div#ayuda_inicial p {
 #generar_linea {
     width: 100%;
     height: 500px;
+    outline: none;
 }
 
 #generar_linea:active {
