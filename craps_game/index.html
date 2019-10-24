@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Craps</title>
+    <link rel="stylesheet" href="button_animation.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+        #container {
+            text-align: center;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+        }
+
+        #boton_volver_tirar {
+            display: none;
+        }
+
+        #info_jugada {
+            font-size: 30px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="container">
+        <div id="boton_tirar">
+            <button class="bubbly-button">JUGAR</button>
+        </div>
+        <div id="boton_volver_tirar">
+            <button class="bubbly-button">VOLVER A TIRAR</button>
+        </div>
+        <div id="dados">
+            <img src="./img_dados/dado1.png" alt="" id="dado1">
+            <img src="./img_dados/dado2.png" alt="" id="dado2">
+        </div>
+        <h1>Saldo: <span id="saldo"></span></h1>
+        <p id="info_jugada"></p>
+    </div>
+    <script src="button_animation.js"></script>
+    <script src="craps.js"></script>
+</body>
+
+</html>
