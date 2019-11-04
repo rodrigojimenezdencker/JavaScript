@@ -8,22 +8,17 @@
     <title>Lista de tareas</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <style>
-        /* #formulario {
-            width: 80%;
-            margin: auto;
-        } */
-    </style>
 </head>
 
 <body>
     <div class="container">
-        <div class="container-fluid mt-5" id="formulario">
+        <div class="container-fluid mt-5">
             <div class="form-group">
                 <input class="form-control" type="text" name="tarea" id="tarea" placeholder="Tarea">
             </div>
             <div class="form-group">
                 <select class="custom-select" id="prioridad">
+                    <option value="Prioridad" disabled>Prioridad</option>
                     <option value="Urgente">Urgente</option>
                     <option value="Normal">Normal</option>
                     <option value="Pasando del tema">Pasando del tema</option>

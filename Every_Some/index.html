@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Every Some</title>
+</head>
+<body>
+    <script>
+        function masDeTres(frase) {
+            return frase.split(" ").filter(valor => valor.length > 0).every((palabras) => palabras.length >= 3);
+        }
+
+        function masDeDiez(frase) {
+            return frase.split(" ").some((palabras) => palabras.length > 10);
+        }
+    </script>
+</body>
+</html>

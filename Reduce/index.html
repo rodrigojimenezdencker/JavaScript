@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Reduce</title>
+</head>
+<body>
+    <script>
+        var frase = "En un lugar de la mancha";
+        function cadCorta(frase) {
+            return frase.split(" ").sort().reduce((total, palabra) => total.length > palabra.length ? palabra : total);
+        }
+    </script>
+</body>
+</html>

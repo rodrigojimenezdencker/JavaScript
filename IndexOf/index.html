@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>IndexOf</title>
+</head>
+<body>
+    <script>
+        function posPalabra(frase, palabra) {
+            let pos = [];
+            let palabras = frase.split(" ");
+            let posicion = -1;
+            while (palabras.indexOf(palabra, posicion+1) != -1) {
+                posicion = palabras.indexOf(palabra, posicion+1);
+                pos.push(posicion);
+            }
+            return pos;
+        }
+    </script>
+</body>
+</html>

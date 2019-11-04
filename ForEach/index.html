@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>ForEach</title>
+</head>
+
+<body>
+    <script>
+        // let frase = "Hola, buenas";
+        // function vocales(text) {
+        //     vocales = ['a', 'e', 'i', 'o', 'u'];
+        //     let countA = 0;
+        //     let countE = 0;
+        //     let countI = 0;
+        //     let countO = 0;
+        //     let countU = 0;
+        //     text.split("").forEach(i => {
+        //         if (vocales[0] == i) countA++;
+        //         if (vocales[1] == i) countB++;
+        //         if (vocales[2] == i) countC++;
+        //         if (vocales[3] == i) countD++;
+        //         if (vocales[4] == i) countE++;
+        //     });
+        //     return count;
+        // }
+
+        var cadena = "murcielagoasoeuaoisaudioaes";
+
+        console.log(cadena);
+
+        let vocales = {};
+
+        f(cadena);
+
+        function f(cadena) {
+
+            let a = cadena.split("");
+
+            a.forEach(iterator => {
+                if (esVocal(iterator)) {
+                    if (vocales.hasOwnProperty(iterator)) {
+                        vocales[iterator]++;
+                    } else {
+                        vocales[iterator] = 1;
+                    }
+                }
+            })
+        }
+
+        console.log(sortObject(vocales));
+
+        function esVocal(char) {
+            char = char.toUpperCase();
+            return "AEIOU".indexOf(char) != -1;
+        }
+
+        function sortObject(o) {
+            var sorted = {},
+                a = [];
+            for (key in o) {
+                a.push(key);
+            }
+            a.sort();
+            for (key = 0; key < a.length; key++) {
+                sorted[a[key]] = o[a[key]];
+            }
+            return sorted;
+        }
+    </script>
+</body>
+
+</html>
