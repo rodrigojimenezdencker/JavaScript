@@ -2,7 +2,7 @@ let ultimoNumeroParaGanar = null;
 let saldoInicial = 10;
 let saldoActual = saldoInicial;
 let numeros_ganadores = [7, 11];
-let numeros_perdedores = [2, 3, 11];
+let numeros_perdedores = [2, 3, 12];
 let numero_perdedor_segunda_ronda = 7;
 document.getElementById("boton_tirar").addEventListener("click", mezclar);
 document.getElementById("boton_volver_tirar").addEventListener("click", mezclar);
@@ -25,10 +25,10 @@ async function mezclar(){
         document.getElementById("dado2").src = "./img_dados/dado" + dado2 + ".png";
         await sleep(60);
     }
-    comprobarSiGanado(comprobarNumero(dado1, dado2));
+    comprobarSiGanado(sumarNumero(dado1, dado2));
 }
 
-function comprobarNumero(numero1, numero2){
+function sumarNumero(numero1, numero2){
     let numeroFinal = numero1 + numero2;
     return numeroFinal;
 }
@@ -39,7 +39,7 @@ function comprobarSiGanado(numero){
             info_jugada.innerText = "Has ganado";
             saldo.innerText = parseInt(saldo.innerText) + 1;
         } else if (numeros_perdedores.includes(numero)) {
-            info_jugada.innerText = "Has ganado";
+            info_jugada.innerText = "Has perdido";
             saldo.innerText = parseInt(saldo.innerText) - 1;
         } else {
             document.getElementById("boton_tirar").style.display = "none";
@@ -59,8 +59,6 @@ function comprobarSiGanado(numero){
             saldo.innerText = parseInt(saldo.innerText) + 1;
             document.getElementById("boton_tirar").style.display = "block";
             document.getElementById("boton_volver_tirar").style.display = "none";
-        } else {
-            ultimoNumeroParaGanar = numero;
         }
     }
 }
