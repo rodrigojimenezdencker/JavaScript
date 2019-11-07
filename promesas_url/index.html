@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <textarea id="input"></textarea>
+    <input type="button" value="cargar" id="find">
+    <img src="" alt="" id="img">
+    <script>
+        let 
+            button = document.getElementById('find'),
+            txb = document.getElementById('input'),
+            pbx = document.getElementById('img')
+        ;
+
+        init();
+
+        function init(){
+            button.addEventListener('mouseup', findUrl);
+        }
+
+        function findUrl(){
+            let url = txb.value;
+            let promise = new Promise(
+                function(ok, bad){
+                    let img = new Image();
+                    img.addEventListener('load', () => ok('CORRECT'));
+                    img.addEventListener('error', () => ok('NOT VALID URL'));
+                    img.src = url;
+                }
+            )
+
+            promise.then(function(x) {
+                pbx.src = url;
+                console.log(x);
+            }).catch((x) => console.log(x));
+        }
+    </script>
+</body>
+
+</html>
