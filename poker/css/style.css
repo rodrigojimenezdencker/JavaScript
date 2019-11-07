@@ -1,0 +1,3 @@
+div[data-hook="deck"]{
+    display: flex;
+}
