@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Usuarios Fetch</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <style>
+            .personas {
+                display: flex;
+                justify-content: space-around;
+                flex-wrap: wrap;
+            }
+
+            .card {
+                box-shadow: 4px 4px 10px black;
+                width: 30%;
+            }
+
+            h1[data-hook="nombre"] {
+                font-size: 30px;
+            }
+        </style>
+</head>
+
+<body>
+    <div class="container-fluid mt-3">
+        <input class="btn btn-primary" type="button" value="Actualizar personas" data-hook="boton">
+        <h1 data-hook="nombre2"></h1>
+        <template data-hook="template">
+            <div class="card">
+                <img class="card-img-top" src="" data-hook="imagen">
+                <div class="card-body">
+                    <h1 class="card-title text-center" data-hook="nombre"></h1>
+                </div>
+            </div>
+        </template>
+    
+        <div class="personas" data-hook="personas"></div>
+    </div>
+
+    <script>
+        document.querySelector('[data-hook="boton"').addEventListener('click', getUsers);
+        let personas = document.querySelector('[data-hook="personas"]');
+
+        function getUsers() {
+            personas.innerHTML = "";
+            fetch('https://randomuser.me/api/?results=3')
+                .then(response => response.json())
+                .then(data => {
+                    for (let persona of data.results) {
+                        let template = document.querySelector('[data-hook="template"]').content;
+                        let clone = document.importNode(template, true);
+                        clone.querySelector('[data-hook="nombre"]').textContent = persona.name.title + " " + persona.name.first + " " + persona.name.last;
+                        clone.querySelector('[data-hook="imagen"]').src = persona.picture.large;
+                        personas.appendChild(clone);
+                    }
+                });
+        }
+    </script>
+</body>
+
+</html>
