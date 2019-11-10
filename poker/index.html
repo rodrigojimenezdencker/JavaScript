@@ -1,19 +1,63 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Póker</title>
+    <title>Póker</title>´
+    <link href="https://fonts.googleapis.com/css?family=Dosis&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./css/style.css">
 </head>
-<body>
-    <input id="shuffle_button" type="button" value="Shuffle">
-    <template data-hook="template_decks">
-        <img data-hook="card" src="" alt="card">
-    </template>
 
-    <div data-hook="deck"></div>
+<body>
+    <div class="container">
+        <input id="shuffle_button" type="button" value="Shuffle">
+
+        <div class="players_layouts" data-hook="decks">
+            <div class="player_layout_outter">
+                <div class="player_layout">
+                    <div class="player_information" data-hook="random_player_information">
+                        <img src="./img/placeholder_avatar.png" class="player_image" data-hook="random_player_image"></img>
+                        <div class="player_name" data-hook="random_player_name">Player 1</div>
+                    </div>
+                    <div class="player_deck" data-hook="player_deck"></div>
+                </div>
+            </div>
+            <div class="player_layout_outter">
+                <div class="player_layout">
+                    <div class="player_information" data-hook="random_player_information">
+                        <img src="./img/placeholder_avatar.png" class="player_image" data-hook="random_player_image"></img>
+                        <div class="player_name" data-hook="random_player_name">Player 2</div>
+                    </div>
+                    <div class="player_deck" data-hook="player_deck"></div>
+                </div>
+            </div>
+            <div class="player_layout_outter">
+                <div class="player_layout">
+                    <div class="player_information" data-hook="player_information">
+                        <img src="./img/placeholder_avatar.png" class="player_image" data-hook="robot_player_image"></img>
+                        <div class="player_name">Robot</div>
+                    </div>
+                    <div class="player_deck" data-hook="player_deck"></div>
+                </div>
+            </div>
+            <div class="player_layout_outter">
+                <div class="player_layout">
+                    <div class="player_information" data-hook="player_information">
+                        <img src="./img/placeholder_avatar.png" class="player_image" data-hook="real_player_image"></img>
+                        <div class="player_name">You</div>
+                    </div>
+                    <div class="player_deck" data-hook="player_deck"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <template data-hook="template_card">
+        <img class="card" data-hook="card" src="" alt="card">
+    </template>
     <script src="./js/script.js"></script>
 </body>
+
 </html>
