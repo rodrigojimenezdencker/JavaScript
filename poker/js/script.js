@@ -20,6 +20,7 @@ function shuffleDecks() {
                             let template_card = document.querySelector('[data-hook="template_card"]').content;
                             let card = document.importNode(template_card, true);
                             card.querySelector('[data-hook="card"]').src = card_value.image;
+                            card.querySelector('[data-hook="card"]').alt = card_value.code;
                             player_deck.appendChild(card);
                         }
                     })
@@ -49,7 +50,7 @@ function generateRobotPlayerImage() {
 
 function generateAvatarPlayerImage() {
     let randomNumber = Math.random();
-        fetch('https://api.adorable.io/avatars/285/' + randomNumber)
-            .then(response => response)
-            .then(data => document.querySelector('[data-hook="real_player_image"]').src = data.url);
+    fetch('https://api.adorable.io/avatars/285/' + randomNumber)
+        .then(response => response)
+        .then(data => document.querySelector('[data-hook="real_player_image"]').src = data.url);
 }
