@@ -13,15 +13,16 @@
 <body>
     <div class="container">
         <input id="shuffle_button" type="button" value="Shuffle">
-
         <div class="players_layouts" data-hook="decks">
-            <div class="player_layout_outter">
+            <div id="first_layout" class="player_layout_outter">
+                <img id="casino_token" src="./img/hiclipart.com.png" alt="">
                 <div class="player_layout">
                     <div class="player_information" data-hook="random_player_information">
                         <img src="./img/placeholder_avatar.png" class="player_image" data-hook="random_player_image"></img>
                         <div class="player_name" data-hook="random_player_name">Player 1</div>
                     </div>
-                    <div class="player_deck" data-hook="player_deck"></div>
+                    <div class="player_deck" data-hook="player_deck">
+                    </div>
                 </div>
             </div>
             <div class="player_layout_outter">

@@ -43,14 +43,37 @@ function generateRandomPlayers() {
 
 function generateRobotPlayerImage() {
     let randomNumber = Math.random();
-    fetch('https://robohash.org/' + randomNumber)
-        .then(response => response)
-        .then(data => document.querySelector('[data-hook="robot_player_image"]').src = data.url);
+    let url = 'https://robohash.org/' + randomNumber;
+    let promise = new Promise(
+        function(){
+            let img = new Image();
+            img.src = url;
+        }
+    )
+
+    promise.then(document.querySelector('[data-hook="robot_player_image"]').src = url)
+    // fetch('https://robohash.org/' + randomNumber)
+    //     .then(response => response)
+    //     .then(data => document.querySelector('[data-hook="robot_player_image"]').src = data.url);
 }
 
 function generateAvatarPlayerImage() {
     let randomNumber = Math.random();
-    fetch('https://api.adorable.io/avatars/285/' + randomNumber)
-        .then(response => response)
-        .then(data => document.querySelector('[data-hook="real_player_image"]').src = data.url);
+    let url = 'https://api.adorable.io/avatars/285/' + randomNumber;
+    let promise = new Promise(
+        function(ok, bad){
+            let img = new Image();
+            img.addEventListener('load', () => ok('CORRECT'));
+            img.addEventListener('error', () => ok('NOT VALID URL'));
+            img.src = url;
+        }
+    )
+
+    promise.then(x => {
+        document.querySelector('[data-hook="real_player_image"]').src = url
+    })
+    // let randomNumber = Math.random();
+    // fetch('https://api.adorable.io/avatars/285/' + randomNumber)
+    //     .then(response => response)
+    //     .then(data => document.querySelector('[data-hook="real_player_image"]').src = data.url);
 }

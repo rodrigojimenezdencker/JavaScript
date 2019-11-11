@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        fetch("http://localhost:55434//api/alumnoes").then(resp => resp.json())
+        .then(data => {
+            for (alumno of data) {
+                console.log(alumno.id + "-" + alumno.nombre + "-" + alumno.nota);
+            }
+        })
+ 
+    let alumno = { nombre: "Firulai", nota: 8 };
+    let params = {
+        method: 'POST',
+        body: JSON.stringify(alumno),
+        headers: {
+            "Content-type": "application/json; charset=UTF-8"
+        }
+    };
+    fetch('http://localhost:55434/api/alumnoes', params)
+        .then(response => response.json())
+        .then(json => console.log(json))
+ 
+    alumno = { id: 1, nombre: "Firulai", nota: 6 };
+    params = {
+        method: 'PUT',
+        body: JSON.stringify(alumno),
+        headers: {
+            "Content-type": "application/json; charset=UTF-8"
+        }
+    };
+    fetch('http://localhost:55434/api/Alumnoes/1', params)
+        .then(response => {
+            console.log(response);
+            return response.json()})
+        .then(json => console.log(json))
+        .catch(error => console.log(error));
+ 
+    params = {
+        method: 'DELETE',
+        headers: {
+            "Content-type": "application/json; charset=UTF-8"
+        }
+    };
+    // fetch('https://localhost:55434/api/alumnoes/13', params)
+    //     .then(response => response.json())
+    //     .then(json => console.log(json))
+    //     .catch(error => console.log(error));
+    </script>
+</body>
+</html>
