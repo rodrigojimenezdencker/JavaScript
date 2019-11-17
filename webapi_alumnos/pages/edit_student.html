@@ -12,10 +12,53 @@
 
 <body>
     <div class="container">
+        <a href="./../index.html" class="btn btn-primary">Volver</a>
+
         <h1>Edit student</h1>
+        <form action="./../index.html" id="form_new_student">
+            <div class="form-group">
+                <label for="student_name">Nombre:</label>
+                <input type="text" class="form-control" name="student_name" id="student_name" placeholder="">
+            </div>
+            <div class="form-group">
+                <label for="student_name">Nota:</label>
+                <input type="number" class="form-control" name="student_name" id="student_mark" placeholder="">
+            </div>
+            <button type="submit" id="button_edit_student" class="btn btn-success">Guardar</button>
+        </form>
     </div>
-    <script>
-        
+    <script type="module">
+        import { getJSON, postJSON, putJSON, deleteJSON } from './../js/peticiones.js';
+        let host = window.location.host;
+
+        window.addEventListener('DOMContentLoaded', () => getStudentById(localStorage.idStudentToEdit));
+
+        function getStudentById(id) {
+            getJSON("http://localhost:55434/api/Alumnoes/" + id)
+                .then(data => { procesar(data) })
+                .catch(error => console.log(error));
+        }
+
+        function editStudent(id, object) {
+            putJSON("http://localhost:55434/api/Alumnoes/" + id, object)
+                .then(() => {window.location.assign("http://" + host + "/index.html");})
+                .catch(error => console.log(error));
+        }
+
+        function procesar(datos) {
+            document.getElementById('student_name').value = datos.nombre;
+            document.getElementById('student_mark').value = datos.nota;
+            document.getElementById("button_edit_student").addEventListener('click', (e) => {
+                e.preventDefault();
+                let editedStudent = {
+                    "id": localStorage.idStudentToEdit,
+                    "nombre": document.getElementById("student_name").value,
+                    "nota": document.getElementById("student_mark").value
+                }
+                editStudent(parseInt(localStorage.idStudentToEdit), editedStudent);
+            })
+        }
+
     </script>
 </body>
 

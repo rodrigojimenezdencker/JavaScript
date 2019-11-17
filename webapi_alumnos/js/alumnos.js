@@ -10,7 +10,7 @@ function getStudents() {
 
 function addStudent(student) {
     postJSON("http://localhost:55434/api/Alumnoes", student)
-        .then(data => {window.location.assign("http://" + host + "/index.html");})
+        .then(() => {window.location.assign("http://" + host + "/index.html");})
         .catch(error => console.log(error));
 }
 
@@ -22,7 +22,7 @@ function deleteStudent(id) {
 
 function editStudent(id) {
     putJSON("http://localhost:55434/api/Alumnoes/" + id)
-        .then(data => console.log(data))
+        .then(data => {window.location.assign("http://" + host + "/pages/edit_student.html");})
         .catch(error => console.log(error));
 }
 
@@ -36,13 +36,19 @@ function procesar(datos) {
         let student_mark = document.createElement("td");
         student_mark.textContent = student.nota;
         let actions = document.createElement("td");
-        actions.innerHTML = "<a href='http://" + host + "/pages/edit_student.html?nombre=" 
-        + student.nombre + "&nota=" + student.nota + "' class='btn btn-primary mr-1 edit_student'>Editar</a><button class='btn btn-danger delete_student' id='" + student.id + "'>Borrar</button>";
+        actions.innerHTML = "<button class='btn btn-primary mr-1 edit_student' id='" + student.id + "'>Editar</button><button class='btn btn-danger delete_student' id='" + student.id + "'>Borrar</button>";
         row.appendChild(student_name);
         row.appendChild(student_mark);
         row.appendChild(actions);
         table.appendChild(row);
     });
+    let edit_buttons = document.getElementsByClassName('edit_student');
+    for (let button of edit_buttons) {
+        button.addEventListener("click", () => {
+            localStorage.idStudentToEdit = button.id;
+            window.location.assign("http://" + host + "/pages/edit_student.html");
+        });
+    }
     let delete_buttons = document.getElementsByClassName("delete_student");
     for (let button of delete_buttons) {
         button.addEventListener("click", () => {
