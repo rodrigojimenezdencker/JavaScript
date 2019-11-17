@@ -15,18 +15,7 @@
         <h1>Edit student</h1>
     </div>
     <script>
-        function getParameterByName(name, url) {
-            if (!url) url = window.location.href;
-            name = name.replace(/[\[\]]/g, '\\$&');
-            var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
-                results = regex.exec(url);
-            if (!results) return null;
-            if (!results[2]) return '';
-            return decodeURIComponent(results[2].replace(/\+/g, ' '));
-        }
-
-        console.log(getParameterByName("hola", "https://stackoverflow.com/?hola=Comoestas2&id=3"));
-        console.log(getParameterByName("id", "https://stackoverflow.com/?hola=Comoestas2&id=3"));
+        
     </script>
 </body>
 
