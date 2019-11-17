@@ -5,30 +5,32 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Edit student</title>
+    <title>Nuevo estudiante</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 
 <body>
     <div class="container">
-        <h1 class="display-4">Edit student</h1>
+        <h1 class="display-4">New student</h1>
         <div class="jumbotron">
+
             <form>
                 <div class="form-group">
                     <label for="student_name">Name:</label>
-                    <input type="text" class="form-control" name="student_name" id="student_name" placeholder="">
+                    <input type="text" class="form-control" name="student_name" id="student_name">
                 </div>
                 <div class="form-group">
                     <label for="student_name">Mark:</label>
-                    <input type="number" class="form-control" name="student_name" id="student_mark" placeholder="">
+                    <input type="number" class="form-control" name="student_name" id="student_mark">
                 </div>
-                <button type="submit" id="button_edit_student" class="btn btn-success"><span class="fas fa-save"></span> Save</button>
+                <button type="submit" id="button_new_student" class="btn btn-success"><span class="fas fa-save"></span> Save</button>
             </form>
         </div>
         <a href="../index.html" class="btn btn-primary"><span class="fas fa-arrow-left"></span> Back</a>
+
     </div>
-    <script type="module" src="./../js/edit_student.js"></script>
+    <script type="module" src="./../js/add_student.js"></script>
     <script src="https://kit.fontawesome.com/1cb0192e3d.js" crossorigin="anonymous"></script>
 </body>
 

@@ -6,20 +6,19 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Alumnos</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="./css/style.css">
+    <!-- <link rel="stylesheet" href="./css/style.css"> -->
 </head>
 <body>
     <div class="container">
-        <h1>Index</h1>
-        <a href="./pages/create_student.html" class="btn btn-success">Nuevo estudiante</a>
+        <h1 class="display-4">Students</h1>
+        <a href="./pages/add_student.html" class="btn btn-success"><span class="fas fa-plus"></span> New student</a>
         <div class="table-responsive">
-
             <table class="mt-3 table table-hover">
                 <thead>
                     <tr>
-                        <th>Nombre</th>
-                        <th>Nota</th>
-                        <th id="actions">Acciones</th>
+                        <th>Name</th>
+                        <th>Mark</th>
+                        <th id="actions" class="w-25">Actions</th>
                     </tr>
                     </thead>
                     <tbody id="table_body">
@@ -27,6 +26,7 @@
             </table>
         </div>
     </div>
-    <script type="module" src="./js/alumnos.js"></script>
+    <script type="module" src="./js/index.js"></script>
+    <script src="https://kit.fontawesome.com/1cb0192e3d.js" crossorigin="anonymous"></script>
 </body>
 </html>
